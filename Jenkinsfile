@@ -15,6 +15,14 @@ pipeline {
             }
         }
 
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh 'docker build -t maven-practice:1.0 .'
