@@ -15,6 +15,12 @@ pipeline {
             }
         }
 
+        stage('Deploy to JFrog') {
+            steps {
+                sh 'mvn deploy -DskipTests'
+            }
+        }
+
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
